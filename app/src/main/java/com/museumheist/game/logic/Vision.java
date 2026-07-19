@@ -1,0 +1,3 @@
+package com.museumheist.game.logic;
+import com.museumheist.game.entity.Guard; import com.museumheist.game.entity.Player;
+public final class Vision { private Vision(){} public static boolean canSee(Guard g,Player p){return canSee(g.getX(),g.getY(),g.getFacingX(),g.getFacingY(),g.getViewDistance(),g.getViewAngleRadians(),p.getX(),p.getY());} public static boolean canSee(float ox,float oy,float fx,float fy,float distance,float angle,float tx,float ty){float dx=tx-ox,dy=ty-oy,d=(float)Math.hypot(dx,dy);if(d>distance||d<=.001f)return false;float fl=(float)Math.hypot(fx,fy);if(fl<=.001f)return false;float dot=(dx/d)*(fx/fl)+(dy/d)*(fy/fl);return dot>=Math.cos(angle*.5f);} }
